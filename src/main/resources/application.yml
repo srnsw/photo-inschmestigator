@@ -1,0 +1,3 @@
+photo-investigator:
+  url: http://investigator.records.nsw.gov.au/asp/photosearch/search.asp
+  userAgent: photo-inschmestigator
