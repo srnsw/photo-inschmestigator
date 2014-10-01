@@ -15,6 +15,10 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: 'war'
 
+
+mainClassName = "Application"
+applicationName = "photo-inschmestigator"
+
 war {
     baseName = 'photo-inschmestigator'
     version =  '0.1.0'
