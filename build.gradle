@@ -1,27 +1,21 @@
+
 buildscript {
     repositories {
-        maven { url "http://repo.spring.io/libs-release" }
         mavenLocal()
         mavenCentral()
+        maven { url 'http://repo.spring.io/libs-release' }
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:+")
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1+'
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
 apply plugin: 'spring-boot'
-apply plugin: 'war'
+apply plugin: 'groovy'
 
-
-mainClassName = "Application"
-applicationName = "photo-inschmestigator"
-
-war {
+jar {
+    from files(sourceSets.main.output.classesDir)
     baseName = 'photo-inschmestigator'
-    version =  '0.1.0'
 }
 
 repositories {
@@ -32,15 +26,20 @@ repositories {
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.boot:spring-boot-starter-actuator'
     compile 'org.springframework.boot:spring-boot-starter-jetty'
     compile 'com.google.guava:guava:+'
     compile 'org.yaml:snakeyaml:+'
     compile 'org.jsoup:jsoup:+'
+    compile 'org.eclipse.jetty:jetty-servlet:9.+'
+    compile 'org.codehaus.groovy:groovy-all:2.3.+'
+    compile 'com.hazelcast:hazelcast:3.2.+'
+    compile 'com.hazelcast:hazelcast-spring:3.2.+'
+    compile 'javax.inject:javax.inject:+'
     testCompile 'junit:junit'
 }
-task stage(dependsOn: ['clean', 'installApp'])
+
+task stage(dependsOn: [build])
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.0'
+    gradleVersion = '2.1'
 }
