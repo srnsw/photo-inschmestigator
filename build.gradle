@@ -12,8 +12,9 @@ buildscript {
 
 apply plugin: 'spring-boot'
 apply plugin: 'groovy'
+apply plugin: 'war'
 
-jar {
+war {
     from files(sourceSets.main.output.classesDir)
     baseName = 'photo-inschmestigator'
 }
